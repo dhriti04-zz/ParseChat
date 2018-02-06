@@ -23,7 +23,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configuration.clientKey = "myMasterKeyIsOnlyMineToKnow"
             configuration.server = "https://parsecha.herokuapp.com/parse"
         }))
+        
+        if let currentUser = PFUser.current() {
+            print("Welcome back \(currentUser.username!) 😀")
+                
+        // TODO: Load Chat view controller and set as root view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatView")
+        window?.rootViewController = chatViewController
+            
+        }
         return true
+    
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

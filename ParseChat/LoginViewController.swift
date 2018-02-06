@@ -88,7 +88,17 @@ class LoginViewController: UIViewController {
         
             PFUser.logInWithUsername(inBackground: username!, password: password!) { (user: PFUser?, error: Error?) in
             if let error = error {
-                print("User log in failed: \(error.localizedDescription)")
+                
+                    let alertController = UIAlertController(title: "Alert", message: "Please check your username/password", preferredStyle: .alert)
+                    let OKAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                        print ("OK TAPPED")
+                    }
+                    // add the OK action to the alert controller
+                    alertController.addAction(OKAction)
+                    
+                    self.present(alertController, animated: true) {
+                        print ("ERROR")
+                    }
                 
                 
             } else {

@@ -14,11 +14,35 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var myTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     var myMessages: [PFObject] = []
+    let randomRed:CGFloat = CGFloat(arc4random_uniform(256))
+    let randomGreen:CGFloat = CGFloat(arc4random_uniform(256))
+    let randomBlue:CGFloat = CGFloat(arc4random_uniform(256))
+    
+    var refreshControl: UIRefreshControl!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Auto size row height based on cell autolayout constraints
+        tableView.rowHeight = UITableViewAutomaticDimension
+        // Provide an estimated row height. Used for calculating scroll indicator
+        tableView.estimatedRowHeight = 50
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(ChatViewController.didPullToRefresh(_:)), for: .valueChanged)
+        
+        tableView.insertSubview(refreshControl, at: 0)
+        
+        let currentUser = PFUser.current()
+        
+        self.navigationItem.title = "\(currentUser!.username!)'s chat"
+        
+//        tableView.separatorStyle = .none
+//        bubbleView.layer.cornerRadius = 16
+//        bubbleView.clipsToBounds = true
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -32,6 +56,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Dispose of any resources that can be recreated.
     }
     
+    @objc func didPullToRefresh(_ refreshControl: UIRefreshControl){
+        onTimer()
+    }
+    
     @objc func onTimer() {
         // Add code to be run periodically
         let query = PFQuery(className:"Message")
@@ -41,8 +69,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             (objects: [PFObject]?, error: Error?) -> Void in
             
             if error == nil {
-                // The find succeeded.
-                //print("Successfully retrieved \(objects!.count) scores.")
                 // Do something with the found objects
                 if let objects = objects {
                     self.myMessages = objects
@@ -54,6 +80,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         }
         self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     @IBAction func logOutUser(_ sender: Any) {
@@ -85,13 +112,17 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return myMessages.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var message = myMessages[indexPath.row]
+        let myColor =  UIColor(red: randomRed/255, green: randomGreen/255, blue: randomBlue/255, alpha: 1.0)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatCell", for: indexPath) as! ChatCell
         
         cell.myLabel.text = message["text"] as! String!
+        cell.myUser.textColor = myColor
         cell.myUser.text = message["username"] as! String!
+        cell.myUser.textColor = myColor
         
         return cell
     }

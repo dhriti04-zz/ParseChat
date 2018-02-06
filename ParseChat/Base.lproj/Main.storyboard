@@ -23,14 +23,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartInsertDeleteType="no" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NB5-He-a9J">
                                 <rect key="frame" x="74" y="258" width="224" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartInsertDeleteType="no" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Si-8r-vEJ">
                                 <rect key="frame" x="74" y="328" width="80" height="30"/>
@@ -78,7 +78,7 @@
         <!--Chat-->
         <scene sceneID="3Ne-mb-pxY">
             <objects>
-                <viewController id="26j-Ji-kB6" customClass="ChatViewController" customModule="ParseChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="26j-Ji-kB6" customClass="ChatViewController" customModule="ParseChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nkn-se-PLA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,21 +113,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello there! How are you?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsU-bU-A36">
-                                                    <rect key="frame" x="132" y="5" width="228" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sj7-5f-J8Y">
+                                                    <rect key="frame" x="15" y="10" width="79" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sj7-5f-J8Y">
-                                                    <rect key="frame" x="15" y="11" width="99" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello there! How are you?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsU-bU-A36">
+                                                    <rect key="frame" x="130" y="10" width="230" height="23.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.29057141479911908" green="0.093324867656613297" blue="1" alpha="0.88717358732876717" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fsU-bU-A36" secondAttribute="trailing" constant="15" id="2eV-lX-hee"/>
+                                                <constraint firstItem="fsU-bU-A36" firstAttribute="top" secondItem="sj7-5f-J8Y" secondAttribute="top" id="3OW-bm-m8n"/>
+                                                <constraint firstItem="sj7-5f-J8Y" firstAttribute="leading" secondItem="Bw8-1P-Udm" secondAttribute="leading" constant="15" id="D0x-zT-Cv7"/>
+                                                <constraint firstItem="fsU-bU-A36" firstAttribute="top" secondItem="Bw8-1P-Udm" secondAttribute="top" constant="10" id="NME-WD-kfD"/>
+                                                <constraint firstAttribute="bottom" secondItem="fsU-bU-A36" secondAttribute="bottom" constant="10" id="NW5-9c-oJF"/>
+                                                <constraint firstItem="fsU-bU-A36" firstAttribute="leading" secondItem="Bw8-1P-Udm" secondAttribute="leading" constant="130" id="O14-Bd-wRN"/>
+                                                <constraint firstItem="sj7-5f-J8Y" firstAttribute="top" secondItem="Bw8-1P-Udm" secondAttribute="top" constant="10" id="b0H-iQ-iA4"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="myLabel" destination="fsU-bU-A36" id="Y1d-h6-dJU"/>
@@ -160,7 +167,7 @@
         <!--Navigation Controller-->
         <scene sceneID="RKS-sb-85U">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="z6e-tX-lgf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ChatView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z6e-tX-lgf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Xdw-vq-ipc">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
